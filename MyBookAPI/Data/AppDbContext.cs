@@ -9,7 +9,6 @@ namespace MyBookAPI.Data
         {
         }
 
-        // Define your DbSets here
         public DbSet<Review> Reviews { get; set; }
     }
 }

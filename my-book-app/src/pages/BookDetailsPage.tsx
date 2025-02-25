@@ -209,7 +209,6 @@ function BookDetailsPage() {
             title={book.title}
             authors={book.authors}
             pageCount={book.pageCount}
-            // Pass computedAverage if available
             averageRating={computedAverage}
             infoLink={book.infoLink}
             publisher={book.publisher}

@@ -14,7 +14,7 @@ interface SearchBarProps {
 
 function SearchBar({ onSearch, initialQuery = "" }: SearchBarProps) {
   const [query, setQuery] = useState(initialQuery);
-  const debouncedQuery = useDebounce(query, 300); // Wait 300ms before searching
+  const debouncedQuery = useDebounce(query, 500); // Wait 300ms before searching
 
   useEffect(() => {
     setQuery(initialQuery);

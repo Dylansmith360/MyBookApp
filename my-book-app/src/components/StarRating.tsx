@@ -3,7 +3,7 @@
    - Displays a star rating with interactive or static stars.
 */
 
-import React, { useState } from "react";
+import { useState } from "react";
 
 // Props for the StarRating component
 interface StarRatingProps {
@@ -58,7 +58,7 @@ const StarRating = ({ rating, onChange, interactive = true }: StarRatingProps) =
           onMouseEnter={() => interactive && handleMouseEnter(star)}
           onMouseLeave={() => interactive && handleMouseLeave()}
           onClick={() => interactive && handleClick(star - 1)}
-          onKeyPress={(e) => e.key === 'Enter' && interactive && handleClick(star - 1)}
+          onKeyDown={(e) => e.key === 'Enter' && interactive && handleClick(star - 1)}
           role="radio"
           aria-checked={(selectedRating ?? rating) === star}
           aria-label={`Rate ${star} out of 10`}

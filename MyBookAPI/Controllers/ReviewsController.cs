@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 namespace MyBookAPI.Controllers
 {
     [ApiController]
-    [Route("api/reviews")]  // Base URL: /api/reviews
+    [Route("api/reviews")]  // Base URL
     public class ReviewsController : ControllerBase
     {
         private readonly AppDbContext _context;
