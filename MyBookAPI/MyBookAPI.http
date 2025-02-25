@@ -1,0 +1,6 @@
+@MyBookAPI_HostAddress = http://localhost:5075
+
+GET {{MyBookAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
