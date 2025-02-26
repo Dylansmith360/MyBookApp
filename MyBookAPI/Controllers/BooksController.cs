@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using System.Web;
 
 namespace MyBookAPI.Controllers
 {
@@ -32,7 +33,14 @@ namespace MyBookAPI.Controllers
             }
 
             int startIndex = (page - 1) * pageSize;
-            string url = $"https://www.googleapis.com/books/v1/volumes?q={query}&startIndex={startIndex}&maxResults={pageSize}&key={_apiKey}";
+            var builder = new UriBuilder("https://www.googleapis.com/books/v1/volumes");
+            var queryParams = HttpUtility.ParseQueryString(builder.Query);
+            queryParams["q"] = query;
+            queryParams["startIndex"] = startIndex.ToString();
+            queryParams["maxResults"] = pageSize.ToString();
+            queryParams["key"] = _apiKey;
+            builder.Query = queryParams.ToString();
+            string url = builder.ToString();
 
             try
             {
@@ -59,7 +67,11 @@ namespace MyBookAPI.Controllers
 
             try
             {
-                string url = $"https://www.googleapis.com/books/v1/volumes/{id}?key={_apiKey}";
+                var builder = new UriBuilder($"https://www.googleapis.com/books/v1/volumes/{id}");
+                var queryParams = HttpUtility.ParseQueryString(builder.Query);
+                queryParams["key"] = _apiKey;
+                builder.Query = queryParams.ToString();
+                string url = builder.ToString();
                 _logger.LogInformation($"Fetching book details from: {url}");
 
                 var response = await _httpClient.GetStringAsync(url);
